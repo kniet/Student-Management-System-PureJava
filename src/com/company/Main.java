@@ -24,7 +24,7 @@ public class Main {
             System.out.println("6. Set password.");
             System.out.println("7. Search by surname.");
             System.out.println("8. Search by year range.");
-            System.out.println("9. Sort by name");
+            System.out.println("9. Sort by name.");
             System.out.println("x. Sort by year of birth.\n");
 
             if (myStudentDataBase.getPasswordLength() == 0) {
