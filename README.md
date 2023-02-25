@@ -1,5 +1,5 @@
 # Student-Management-System-PureJava
-Student Management System is an application written to learn java language. It allows for the management of student informations in terminal. 
+Student Management System is an application written to learn Java language. It allows for the management of student informations in terminal. 
 
 # Requirements
 To run this application, you will need:
