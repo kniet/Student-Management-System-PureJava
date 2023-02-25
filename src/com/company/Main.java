@@ -1,4 +1,6 @@
 package com.company;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -74,7 +76,7 @@ public class Main {
                             break;
                         }
 
-                        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(); // zmiana 1 literu na dużą
+                        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase(); // chagne 1 letter to upper
 
                         System.out.print("Add surname: ");
                         String surname = scanner.nextLine();
@@ -96,8 +98,14 @@ public class Main {
                         }
 
                         System.out.print("Add day of birth: ");
-                        int day = scanner.nextInt();
-                        scanner.nextLine();
+                        int day;
+                        try {
+                            day = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Day must be a digit");
+                            scanner.nextLine();
+                            break;
+                        }
 
                         if (day < 1 || day > 31) {
                             System.out.println("Day is out of range.");
@@ -105,8 +113,14 @@ public class Main {
                         }
 
                         System.out.print("Add month of birth: ");
-                        int month = scanner.nextInt();
-                        scanner.nextLine();
+                        int month;
+                        try {
+                            month = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Month must be a digit");
+                            scanner.nextLine();
+                            break;
+                        }
 
                         if (month < 1 || month > 12) {
                             System.out.println("Month is out of range.");
@@ -114,8 +128,14 @@ public class Main {
                         }
 
                         System.out.print("Add year of birth: ");
-                        int year = scanner.nextInt();
-                        scanner.nextLine();
+                        int year;
+                        try {
+                            year = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Year must be a digit");
+                            scanner.nextLine();
+                            break;
+                        }
 
                         if (year < 1920 || year > 2003) {
                             System.out.println("Year is out of range.");
@@ -596,6 +616,6 @@ public class Main {
     }
 
     public static boolean isAlphabet(String string) {
-        return string.equals("") || !string.matches("^[a-zA-Z]*$"); // wyrażenie regularne (jeśli string nie jest pusty i ma same litery, zwróci true
+        return string.equals("") || !string.matches("^[a-zA-Z]*$"); // regular expression if string isn't null and has only letters, returns true
     }
 }

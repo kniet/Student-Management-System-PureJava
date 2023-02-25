@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class StudentDataBase extends com.company.Student {
+public class StudentDataBase {
 
     private final ArrayList <com.company.Student> myArrayList = new ArrayList<>();
     private final ArrayList <com.company.Student> mySearchArray = new ArrayList<>();
@@ -15,7 +15,6 @@ public class StudentDataBase extends com.company.Student {
     private int currentFound;
 
     public StudentDataBase() {
-        super();
         this.current = 0;
         this.currentFound = 0;
     }
@@ -39,11 +38,11 @@ public class StudentDataBase extends com.company.Student {
 
     public boolean saveToFile() {
         try {
-            FileOutputStream writeData = new FileOutputStream("dane.txt"); // tworzy plik do zapisania danych
-            ObjectOutputStream writeStream = new ObjectOutputStream(writeData); // zajmie się zapisaem obiektu do pliku
+            FileOutputStream writeData = new FileOutputStream("dane.txt"); // create file to save data
+            ObjectOutputStream writeStream = new ObjectOutputStream(writeData); // it handles saving process
 
-            writeStream.writeObject(this.myArrayList);   // zapisuje naszą array liste do pliku
-            writeStream.flush(); // czyści dane w strumieniu I/O
+            writeStream.writeObject(this.myArrayList);   // save our array to file
+            writeStream.flush(); // clear data in I/O steam
             writeStream.close();
 
             return true;
@@ -61,7 +60,7 @@ public class StudentDataBase extends com.company.Student {
 
             ArrayList<com.company.Student>myArrayList2 = (ArrayList<com.company.Student>) readStream.readObject();
 
-            for(i = 0; i < myArrayList2.size(); i++) { // przepisanie wartości do początkowej tablicy nie nadpisując danych
+            for(i = 0; i < myArrayList2.size(); i++) { // Rewriting values in the initial array without overwriting existing data
                 myArrayList.add(myArrayList2.get(i));
             }
 
@@ -99,19 +98,19 @@ public class StudentDataBase extends com.company.Student {
     }
 
     public boolean savePassword(String newPassword) {
-        Path path = Paths.get("C:\\Users\\kniet\\Desktop\\Sem4_Zal_Jakub_Nietupski\\password.txt");
+        Path path = Paths.get("password.txt");
 
         try {
 
             char[] chars = newPassword.toCharArray();
 
-            for(i = 0; i<chars.length; i++) { // szyfrowanie
+            for(i = 0; i<chars.length; i++) { // encryption
                 chars[i] += 5;
             }
 
             newPassword = String.valueOf(chars);
 
-            Files.writeString(path,newPassword);  // zapisanie do ścieżki, string, standardowe ustawienie charów
+            Files.writeString(path,newPassword);
             return true;
         }
         catch (IOException e) {
@@ -121,7 +120,7 @@ public class StudentDataBase extends com.company.Student {
     }
 
     private String readPassword() {
-        Path fileName = Path.of("C:\\Users\\kniet\\Desktop\\Sem4_Zal_Jakub_Nietupski\\password.txt");
+        Path fileName = Path.of("password.txt");
 
         try {
             return Files.readString(fileName);
@@ -144,7 +143,7 @@ public class StudentDataBase extends com.company.Student {
 
         char[] chars = filePassword.toCharArray();
 
-        for(i = 0; i<chars.length; i++) { // deszyfrowanie
+        for(i = 0; i<chars.length; i++) { // decryption
             chars[i] -= 5;
         }
 
@@ -316,7 +315,7 @@ public class StudentDataBase extends com.company.Student {
     }
 
     public void printAll() {
-        for (i=0; i<myArrayList.size();i++) {
+        for (i = 0; i<myArrayList.size(); i++) {
             myArrayList.get(i).readAll();
         }
     }
